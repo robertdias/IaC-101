@@ -1,0 +1,34 @@
+name: development
+
+on:
+  push: 
+    branches: [ master ] 
+    paths:
+    - '.github/workflows/development.yml' 
+
+env:
+ SUB_ID: ${{ secrets.SUB_ID }}
+
+jobs:
+     
+ terraform:
+  name: "Terraform"
+  runs-on: ubuntu-latest
+  steps:
+   - name: Checkout
+     uses: actions/checkout@v2.3.4
+
+   - name: Connect to Azure
+     uses: azure/login@v1
+     with:
+       creds: '${{ secrets.AZURE_CREDS }}'
+
+   - name: Setup Terraform
+     uses: hashicorp/setup-terraform@v1.3.2
+
+   - name: Terraform
+     run: |
+          cd terraform
+          terraform init -input=false
+          terraform plan -input=false
+
