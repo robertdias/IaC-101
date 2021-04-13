@@ -1,0 +1,109 @@
+name: rg-network-hub-001
+
+on:
+  push: 
+    branches: [ master ] 
+    paths:
+    - '.github/workflows/rg-network-hub-001.yml'
+    - '.github/workflows/rg-network-hub-001/*/*' 
+
+env:
+  resourceGroupName: 'rg-network-hub-001'
+  location: 'eastus2'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+    - name: azlogin
+      uses: ./.github/actions/azlogin
+      with:
+        identity: 'true'
+#        environmentName: 'AzureUSGovernment' 
+#        subscriptionId: '47a5904b-f5d7-4a6f-b76b-8b45cd8a9295'
+#        accountId: 'aac3a4bf-cfbc-466a-7efa-18d514ac9c88' # This is the ClientID for 'mi-github-hub-001'
+
+#    - name: NetworkWatcher
+#      uses: ./.github/actions/azdeploy
+#      with:
+#        resourceGroupName: ${{ env.resourceGroupName }}
+#        location: ${{ env.location }}
+#        templateFile: 'Modules/ARM/NetworkWatcher/deploy.json'
+#        parametersFile: 'Modules/ARM/NetworkWatcher/Parameters/parameters.json'
+
+#    - name: DDoSProtectionPlan
+#      uses: ./.github/actions/azdeploy
+#      with:
+#        resourceGroupName: ${{ env.resourceGroupName }} 
+#        location: ${{ env.location }}
+#        templateFile: 'Modules/ARM/DdosProtectionPlans/deploy.json'
+#        parametersFile: 'Modules/ARM/DdosProtectionPlans/Parameters/parameters.json'
+#        resourceGroupCommand: 'create'       
+
+    - name: NetworkSecurityGroups
+      uses: ./.github/actions/azdeploy
+      with:
+        resourceGroupName: ${{ env.resourceGroupName }}
+        location: ${{ env.location }}
+        templateFile: 'Modules/ARM/NetworkSecurityGroups/deploy.json'
+        parametersFile: './.github/workflows/${{ env.resourceGroupName }}/NetworkSecurityGroups/parameters.json'
+
+    - name: RouteTables
+      uses: ./.github/actions/azdeploy 
+      with:
+        resourceGroupName: ${{ env.resourceGroupName }}
+        location: ${{ env.location }}
+        templateFile: 'Modules/ARM/RouteTables/deploy.json'
+        parametersFile: 'Modules/ARM/RouteTables/Parameters/parameters.json' 
+        resourceGroupCommand: 'create'
+
+    - name: 'PublicIpPrefixes'
+      uses: ./.github/actions/azdeploy
+      with:
+        resourceGroupName: ${{ env.resourceGroupName }} 
+        location: ${{ env.location }}
+        templateFile: 'Modules/ARM/PublicIpPrefixes/deploy.json'
+        parametersFile: 'Modules/ARM//PublicIpPrefixes/Parameters/parameters.json'    
+
+    - name: VirtualNetwork
+      uses: ./.github/actions/azdeploy 
+      with:
+        resourceGroupName: ${{ env.resourceGroupName }}
+        location: ${{ env.location }}
+        templateFile: 'Modules/ARM/VirtualNetwork/deploy.json'
+        parametersFile: 'Modules/ARM/VirtualNetwork/Parameters/parameters.json'
+        resourceGroupCommand: 'create'
+
+    # - name: AzureFirewall
+    #   uses: ./.github/actions/azdeploy
+    #   with:
+    #     resourceGroupName: ${{ env.resourceGroupName }}
+    #     location: ${{ env.location }}
+    #     templateFile: 'Modules/ARM/AzureFirewall/2019-11-28/deploy.json'
+    #     parametersFile: './.github/workflows/${{ env.resourceGroupName }}/AzureFirewall/parameters.json'
+
+    # - name: VirtualNetworkGateway
+    #   uses: ./.github/actions/azdeploy
+    #   with:
+    #     resourceGroupName: ${{ env.resourceGroupName }}
+    #     location: ${{ env.location }}
+    #     templateFile: 'Modules/ARM/VirtualNetworkGateway/2019-11-28/deploy.json'
+    #     parametersFile: './.github/workflows/${{ env.resourceGroupName }}/VirtualNetworkGateway/parameters.json'
+
+    # - name: AzureVirtualWAN
+    #   uses: ./.github/actions/azdeploy
+    #   with:
+    #     resourceGroupName: ${{ env.resourceGroupName }} 
+    #     location: ${{ env.location }}
+    #     templateFile: 'Modules/ARM/VirtualWan/2020-03-30/deploy.json'
+    #     parametersFile: './.github/workflows/${{ env.resourceGroupName }}/AzureVirtualWAN/parameters.json'
+    #     resourceGroupCommand: 'create'
+
+   # - name: 'VirtualNetworkPeering: vnet-peer-hub-govaz-001-to-csedevtest-govaz-001'
+   #  uses: ./.github/actions/azdeploy
+   #   with:
+   #     resourceGroupName: ${{ env.resourceGroupName }}
+   #     location: ${{ env.location }}
+   #     templateFile: 'Modules/ARM/VirtualNetworkPeering/2019-11-28/deploy.json'
+   #     parametersFile: './.github/workflows/${{ env.resourceGroupName }}/VirtualNetworkPeering/Parameters/vnet-peer-hub-govaz-001-to-csedevtest-govaz-001.json'

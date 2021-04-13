@@ -1,0 +1,100 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus2"
+        },
+        "networkInterfaceName": {
+            "value": "proxy299"
+        },
+        "networkSecurityGroupName": {
+            "value": "Proxy-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "Proxy_http_3128",
+                    "properties": {
+                        "priority": 1010,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "3128"
+                    }
+                },
+                {
+                    "name": "default-allow-ssh",
+                    "properties": {
+                        "priority": 1020,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "application"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/33bc7603-3521-4bc2-b8e9-d5164b52839c/resourceGroups/classteam1_rg/providers/Microsoft.Network/virtualNetworks/classteam1-network"
+        },
+        "publicIpAddressName": {
+            "value": "Proxy-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "virtualMachineName": {
+            "value": "Proxy"
+        },
+        "virtualMachineComputerName": {
+            "value": "Proxy"
+        },
+        "virtualMachineRG": {
+            "value": "Proxy"
+        },
+        "osDiskType": {
+            "value": "StandardSSD_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B1s"
+        },
+        "adminUsername": {
+            "value": "azureuser"
+        },
+        "autoShutdownStatus": {
+            "value": "Enabled"
+        },
+        "autoShutdownTime": {
+            "value": "23:59"
+        },
+        "autoShutdownTimeZone": {
+            "value": "Eastern Standard Time"
+        },
+        "autoShutdownNotificationStatus": {
+            "value": "Enabled"
+        },
+        "autoShutdownNotificationLocale": {
+            "value": "en"
+        },
+        "autoShutdownNotificationEmail": {
+            "value": "labadmin@fedacf2103group1outlook.onmicrosoft.com"
+        }
+    }
+}
