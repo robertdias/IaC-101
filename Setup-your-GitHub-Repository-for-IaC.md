@@ -6,8 +6,6 @@ Follow [these instructions](https://docs.github.com/en/github/creating-cloning-a
 
 The new repository structure should look like the following:
 
-   <img src=".attachments/top-level-directory-structure.jpg" alt="top-level-directory-structure" title="Top Level Directory Structure"/>
-
 * The **Docs** directory contains this documentation
 * The **Scripts** directory contains all no ARM based code used to deploy or configure resources in Azure.
 * The **Modules** directory contains all the ARM templates used in this project. There is one module per Azure resource type.
