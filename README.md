@@ -28,7 +28,7 @@ To be able to develop Terraform templates and GitHub workflows, install the foll
 Click on the links above and install the two packages by following the instructions provided.
 Then start VS code and install your favorite extensions. Some of the ones we recommend are listed below:
 
-- [Terraform] (https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform) by HashiCorp
+- [Terraform](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform) by HashiCorp
 - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 
