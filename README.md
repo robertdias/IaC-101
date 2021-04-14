@@ -7,7 +7,6 @@ Prerequisites:
 - MSDN account
 - Az CLI or Az PoSH
 - terraform.exe
-- 
 
 Remote State file
 
