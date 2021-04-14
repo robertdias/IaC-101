@@ -4,11 +4,11 @@ The goal of this session is to deploy one Linux VM to Azure. We are working excl
 
 Step 1: **Set Az CLI for the target cloud**.
 
-- In a terminal session, for commercial Azure subscriptions (this includes MSDN accounts) type `[az cloud set --name AzureCloud]`
-  - If you are targeting an Azure Government subscription, enter `[--name AzureUSGovernment]`
+- In a terminal session, for commercial Azure subscriptions (this includes MSDN accounts) type `az cloud set --name AzureCloud`
+  - If you are targeting an Azure Government subscription, enter `--name AzureUSGovernment`
 
 Step 2: **Log into subscription**.
 
-- In a terminal session, type ''az login'' and use browser authentication to log into the target Azure subscription.
+- In a terminal session, type `az login` and use browser authentication to log into the target Azure subscription.
 
 Step 3:  
