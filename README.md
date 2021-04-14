@@ -4,7 +4,7 @@ Infrastructure as Code for beginners. This repo focuses on learning Terraform ba
 
 1. Deploy a basic Terraform file using your local machine. This will create one linux VM in your Azure environment.
 2. Create a composite terraform configuration using input variables. (future)
-3. 
+3. TBD
 
 Prerequisites:
 
@@ -28,9 +28,9 @@ To be able to develop Terraform templates and GitHub workflows, install the foll
 Click on the links above and install the two packages by following the instructions provided.
 Then start VS code and install your favorite extensions. Some of the ones we recommend are listed below:
 
-•	[Terraform] by HashiCorp (https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
-•	[YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
-•	[Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+- [Terraform] (https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform) by HashiCorp
+- [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 
 ## Resources
 
