@@ -3,9 +3,9 @@
 The github actions are powershell scripts that run in docker containers. The code for these actions is stored in the **action** folder under a sub-directory named after each action:
 
   * **[azlogin](../azlogin/../.github/actions/azlogin/readme.md)**: action used to login to Azure prior to calling any of the other actions. This actions executes the PowerShell cmdlet *Connect-AzAccount* to login and set the Azure context to the subscription specified through the cmdlet *Set-AzContext*.  
-  * **[azdeploy](../azlogin/../.github/actions/azdeploy/readme.md)**: used to deploy Resources in Azure at the Resoure Group level or Subscription level by execuring the PowerShell cmdlet *New-AzResourceGroupDeployment* or  *New-AzDeployment*.
-  * **[azremove](../azlogin/../.github/actions/azremove/readme.md)**: used to remove azure resources or Azure resource groups by execuring the PowerShell cmdlet *Remove-AzResource* or *Remove-AzResourceGroup*.
-  * **[azvalidate](../azlogin/../.github/actions/azvalidate/readme.md)**: used to validate an ARM template by execuring the PowerShell cmdlet *Test-AzResourceGroupDeployment* at the Resource Group level or *Test-AzDeployment* at the Subscription level.
+  * **[azdeploy](../azlogin/../.github/actions/azdeploy/readme.md)**: used to deploy Resources in Azure at the Resource Group level or Subscription level by executing the PowerShell cmdlet *New-AzResourceGroupDeployment* or  *New-AzDeployment*.
+  * **[azremove](../azlogin/../.github/actions/azremove/readme.md)**: used to remove azure resources or Azure resource groups by executing the PowerShell cmdlet *Remove-AzResource* or *Remove-AzResourceGroup*.
+  * **[azvalidate](../azlogin/../.github/actions/azvalidate/readme.md)**: used to validate an ARM template by executing the PowerShell cmdlet *Test-AzResourceGroupDeployment* at the Resource Group level or *Test-AzDeployment* at the Subscription level.
   * **[azpwsh](../azlogin/../.github/actions/azpwsh/readme.md)**: used to run any PowerShell script.
 
 The sub-directories under the **.github** directory have to follow the structure depicted in the diagram below, otherwise the workfows defined will not run. Note that only a few of the sub-directories used in the project have been represented here.
