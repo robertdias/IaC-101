@@ -16,3 +16,9 @@ Step 2: **Log into subscription**.
 ![](/.attachments/az-login-success.jpg)
 
 Step 3: **Change directory to Session 1 folder**.
+
+- Change the local working directory in VS Code to the Session 1 folder containing the first terraform configuration file.
+
+![](/.attachments/change-dir-to-sess-1.png)
+
+Step 4: ****

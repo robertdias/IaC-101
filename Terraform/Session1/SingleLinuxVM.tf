@@ -170,13 +170,6 @@ resource "azurerm_storage_account" "mystorageaccount" {
     }
 }
 
-# Create (and display) an SSH key
-resource "tls_private_key" "example_ssh" {
-  algorithm = "RSA"
-  rsa_bits = 4096
-}
-output "tls_private_key" { value = tls_private_key.example_ssh.private_key_pem }
-
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
     name                  = "vmRHEL-001"
@@ -212,82 +205,4 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     tags = {
         environment = "Litware Reqmnt"
     }
-}
-
-# Create Azure Backup // soft delete is disabled to allow repeated runs
-resource "azurerm_recovery_services_vault" "myterraformrsv" {
-  name                = "rv-recovery-vault"
-  location            = azurerm_resource_group.myterraformgroup.location
-  resource_group_name = azurerm_resource_group.myterraformgroup.name
-  sku                 = "Standard"
-  soft_delete_enabled = false
-}
-
-
-resource "azurerm_backup_policy_vm" "myterraformpackuppolicy" {
-  name                = "tfex-recovery-vault-policy"
-  resource_group_name = azurerm_resource_group.myterraformgroup.name
-  recovery_vault_name = azurerm_recovery_services_vault.myterraformrsv.name
-
-  backup {
-    frequency = "Daily"
-    time      = "12:00"
-  }
-    
-  retention_daily {
-    count = 10
-  }
-}
-
-resource "azurerm_backup_protected_vm" "packupprotection" {
-  resource_group_name = azurerm_resource_group.myterraformgroup.name
-  recovery_vault_name = azurerm_recovery_services_vault.myterraformrsv.name
-  source_vm_id        = azurerm_linux_virtual_machine.myterraformvm.id
-  backup_policy_id    = azurerm_backup_policy_vm.myterraformpackuppolicy.id
-}
-
-# Add Log Analytics and monitoring ot VM
-resource "azurerm_log_analytics_workspace" "myterraformLAW" {
-  name                = "acctest-01"
-  location            = azurerm_resource_group.myterraformgroup.location
-  resource_group_name = azurerm_resource_group.myterraformgroup.name
-  sku                 = "PerGB2018"
-  retention_in_days   = 30
-}
-
-resource "azurerm_log_analytics_solution" "mytfLAsolution" {
-  solution_name         = "ContainerInsights"
-  location              = azurerm_resource_group.myterraformgroup.location
-  resource_group_name   = azurerm_resource_group.myterraformgroup.name
-  workspace_resource_id = azurerm_log_analytics_workspace.myterraformLAW.id
-  workspace_name        = azurerm_log_analytics_workspace.myterraformLAW.name
-
-  plan {
-    publisher = "Microsoft"
-    product   = "OMSGallery/ContainerInsights"
-  }
-}
-
-#===================================================================
-# Set Monitoring and Log Analytics Workspace
-#===================================================================
-resource "azurerm_virtual_machine_extension" "mytf-omsextension" {
-  name                       = "test-OMSExtension"
-virtual_machine_id         =  azurerm_linux_virtual_machine.myterraformvm.id
-  publisher                  = "Microsoft.EnterpriseCloud.Monitoring"
-  type                       = "OmsAgentForLinux"
-  type_handler_version       = "1.12"
-  auto_upgrade_minor_version = true
-
-  settings = <<SETTINGS
-    {
-      "workspaceId" : "${azurerm_log_analytics_workspace.myterraformLAW.workspace_id}"
-    }
-  SETTINGS
-
-  protected_settings = <<PROTECTED_SETTINGS
-    {
-      "workspaceKey" : "${azurerm_log_analytics_workspace.myterraformLAW.primary_shared_key}"
-    }
-  PROTECTED_SETTINGS
 }
