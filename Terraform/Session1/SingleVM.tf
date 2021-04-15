@@ -6,7 +6,7 @@ provider "azurerm" {
 # Create resource groups if they don't exist
 resource "azurerm_resource_group" "myterraformgroup" {
     name     = "rg-linux-vm"
-    location = "usgovvirginia"
+    location = "eastus2"
 
     tags = {
         environment = "Litware Reqmnt"
@@ -15,7 +15,7 @@ resource "azurerm_resource_group" "myterraformgroup" {
 
 resource "azurerm_resource_group" "myterraformgroup2" {
     name     = "rg-linux-vm2"
-    location = "usgovvirginia"
+    location = "eastus2"
 
     tags = {
         environment = "Litware Reqmnt"
@@ -24,9 +24,9 @@ resource "azurerm_resource_group" "myterraformgroup2" {
 
 # Create virtual network
 resource "azurerm_virtual_network" "myterraformnetwork" {
-    name                = "vnet-litreq-va-001"
+    name                = "vnet-litreq-eus2-001"
     address_space       = ["10.20.0.0/16"]
-    location            = "usgovvirginia"
+    location            = "eastus2"
     resource_group_name = azurerm_resource_group.myterraformgroup.name
 
     tags = {
@@ -35,9 +35,9 @@ resource "azurerm_virtual_network" "myterraformnetwork" {
 }
 
 resource "azurerm_virtual_network" "myterraformnetwork2" {
-    name                = "vnet-litreq-va-002"
+    name                = "vnet-litreq-eus2-002"
     address_space       = ["10.21.0.0/16"]
-    location            = "usgovvirginia"
+    location            = "eastus2"
     resource_group_name = azurerm_resource_group.myterraformgroup2.name
 
     tags = {
@@ -63,7 +63,7 @@ resource "azurerm_subnet" "myterraformsubnet2" {
 # Create public IPs
 resource "azurerm_public_ip" "myterraformpublicip" {
     name                         = "pip-vmrhel-001"
-    location                     = "usgovvirginia"
+    location                     = "eastus2"
     resource_group_name          = azurerm_resource_group.myterraformgroup.name
     allocation_method            = "Dynamic"
 
@@ -74,7 +74,7 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 
 resource "azurerm_public_ip" "myterraformpublicip2" {
     name                         = "pip-vmrhel-002"
-    location                     = "usgovvirginia"
+    location                     = "eastus2"
     resource_group_name          = azurerm_resource_group.myterraformgroup2.name
     allocation_method            = "Dynamic"
 
@@ -86,7 +86,7 @@ resource "azurerm_public_ip" "myterraformpublicip2" {
 # Create Network Security Group and rule
 resource "azurerm_network_security_group" "myterraformnsg" {
     name                = "nsg-linux-ssh"
-    location            = "usgovvirginia"
+    location            = "eastus2"
     resource_group_name = azurerm_resource_group.myterraformgroup.name
 
     security_rule {
@@ -109,7 +109,7 @@ resource "azurerm_network_security_group" "myterraformnsg" {
 # Create network interface
 resource "azurerm_network_interface" "myterraformnic" {
     name                      = "nic-vmrhel-001"
-    location                  = "usgovvirginia"
+    location                  = "eastus2"
     resource_group_name       = azurerm_resource_group.myterraformgroup.name
 
     ip_configuration {
@@ -126,7 +126,7 @@ resource "azurerm_network_interface" "myterraformnic" {
 
 resource "azurerm_network_interface" "myterraformnic2" {
     name                      = "nic-vmrhel-002"
-    location                  = "usgovvirginia"
+    location                  = "eastus2"
     resource_group_name       = azurerm_resource_group.myterraformgroup2.name
 
     ip_configuration {
@@ -161,7 +161,7 @@ resource "random_id" "randomId" {
 resource "azurerm_storage_account" "mystorageaccount" {
     name                        = "diag${random_id.randomId.hex}"
     resource_group_name         = azurerm_resource_group.myterraformgroup.name
-    location                    = "usgovvirginia"
+    location                    = "eastus2"
     account_tier                = "Standard"
     account_replication_type    = "LRS"
 
@@ -173,7 +173,7 @@ resource "azurerm_storage_account" "mystorageaccount" {
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
     name                  = "vmRHEL-001"
-    location              = "usgovvirginia"
+    location              = "eastus2"
     resource_group_name   = azurerm_resource_group.myterraformgroup.name
     network_interface_ids = [azurerm_network_interface.myterraformnic.id]
     size                  = "Standard_DS1_v2"
