@@ -35,7 +35,7 @@ Step 4: **Initialize Terraform**
 Step 5: **Plan the Terraform deployment**
 
 - Plan the Terraform deployment and save the plan in a separate file by entering the command `terraform plan -out SingleVM.tfplan`
-- Quick note about terraform plan; running `terraform plan` will print the plan to the terminal and it will ot be stores elsewhere. Outputting the plan to a .tfplan file will enable later review of the plan.
+- Quick note about terraform plan; running `terraform plan` will print the plan to the terminal and its not stored elsewhere. Outputting the plan to a .tfplan file will enable later review of the plan.
 
 ![Terraform Plan start](/.attachments/tf-plan1.png)
 
