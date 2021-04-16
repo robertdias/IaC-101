@@ -38,11 +38,24 @@ Step 5: **Plan the Terraform deployment**
 ![Terraform Plan start](/.attachments/tf-plan1.png)
 ![Terraform Plan finish](/.attachments/tf-plan2.png)
 
-## Commands
+Step 6: **Apply the Terraform configuration**
 
-az account show
-az account set --subscription SUB_NAME
+- Now we are going to make our configuration a real item.
+- Apply the previously generated terraform plan by entering the command `terraform apply SingleVM.tfplan`
 
-terraform init
-terraform plan -out singleVM.tfplan
-terraform apply "vnet.tfplan"
+![Terraform Apply Start](/.attachments/tf-apply0.png)
+![Terraform Apply Finish](/.attachments/tf-apply1.png)
+
+Step 7: **Verify Deployment in portal**
+
+- Open the Azure portal and see your newly created resources.
+  
+![Terraform Verify Deployment](/.attachments/tf-apply2.png)
+
+Step 8: **Burn it down!!**
+
+- Remove all deployed resources by issuing `terraform destroy`
+
+![Terraform Destroy Start](/.attachments/tf-destroy1.png)
+![Terraform Destroy Confirm](/.attachments/tf-destroy2.png)
+![Terraform Destroy Complete](/.attachments/tf-destroy3.png)

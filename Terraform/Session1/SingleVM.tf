@@ -9,16 +9,7 @@ resource "azurerm_resource_group" "myterraformgroup" {
     location = "eastus2"
 
     tags = {
-        environment = "Litware Reqmnt"
-    }
-}
-
-resource "azurerm_resource_group" "myterraformgroup2" {
-    name     = "rg-linux-vm2"
-    location = "eastus2"
-
-    tags = {
-        environment = "Litware Reqmnt"
+        environment = "Tag1"
     }
 }
 
@@ -30,18 +21,7 @@ resource "azurerm_virtual_network" "myterraformnetwork" {
     resource_group_name = azurerm_resource_group.myterraformgroup.name
 
     tags = {
-        environment = "Litware Reqmnt"
-    }
-}
-
-resource "azurerm_virtual_network" "myterraformnetwork2" {
-    name                = "vnet-litreq-eus2-002"
-    address_space       = ["10.21.0.0/16"]
-    location            = "eastus2"
-    resource_group_name = azurerm_resource_group.myterraformgroup2.name
-
-    tags = {
-        environment = "Litware Reqmnt"
+        environment = "Tag1"
     }
 }
 
@@ -53,13 +33,6 @@ resource "azurerm_subnet" "myterraformsubnet" {
     address_prefixes       = ["10.20.1.0/24"]
 }
 
-resource "azurerm_subnet" "myterraformsubnet2" {
-    name                 = "snet-rhel-vms"
-    resource_group_name  = azurerm_resource_group.myterraformgroup2.name
-    virtual_network_name = azurerm_virtual_network.myterraformnetwork2.name
-    address_prefixes       = ["10.21.1.0/24"]
-}
-
 # Create public IPs
 resource "azurerm_public_ip" "myterraformpublicip" {
     name                         = "pip-vmrhel-001"
@@ -68,18 +41,7 @@ resource "azurerm_public_ip" "myterraformpublicip" {
     allocation_method            = "Dynamic"
 
     tags = {
-        environment = "Litware Reqmnt"
-    }
-}
-
-resource "azurerm_public_ip" "myterraformpublicip2" {
-    name                         = "pip-vmrhel-002"
-    location                     = "eastus2"
-    resource_group_name          = azurerm_resource_group.myterraformgroup2.name
-    allocation_method            = "Dynamic"
-
-    tags = {
-        environment = "Litware Reqmnt"
+        environment = "Tag1"
     }
 }
 
@@ -102,7 +64,7 @@ resource "azurerm_network_security_group" "myterraformnsg" {
     }
 
     tags = {
-        environment = "Litware Reqmnt"
+        environment = "Tag1"
     }
 }
 
@@ -120,24 +82,7 @@ resource "azurerm_network_interface" "myterraformnic" {
     }
 
     tags = {
-        environment = "Litware Reqmnt"
-    }
-}
-
-resource "azurerm_network_interface" "myterraformnic2" {
-    name                      = "nic-vmrhel-002"
-    location                  = "eastus2"
-    resource_group_name       = azurerm_resource_group.myterraformgroup2.name
-
-    ip_configuration {
-        name                          = "myNicConfiguration2"
-        subnet_id                     = azurerm_subnet.myterraformsubnet2.id
-        private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = azurerm_public_ip.myterraformpublicip2.id
-    }
-
-    tags = {
-        environment = "Litware Reqmnt"
+        environment = "Tag1"
     }
 }
 
@@ -148,7 +93,7 @@ resource "azurerm_network_interface_security_group_association" "example" {
 }
 
 # Generate random text for a unique storage account name
-resource "random_id" "randomId" {
+resource "random_id" "myrandomId" {
     keepers = {
         # Generate a new ID only when a new resource group is defined
         resource_group = azurerm_resource_group.myterraformgroup.name
@@ -159,14 +104,14 @@ resource "random_id" "randomId" {
 
 # Create storage account for boot diagnostics
 resource "azurerm_storage_account" "mystorageaccount" {
-    name                        = "diag${random_id.randomId.hex}"
+    name                        = "diag${random_id.myrandomId.hex}"
     resource_group_name         = azurerm_resource_group.myterraformgroup.name
     location                    = "eastus2"
     account_tier                = "Standard"
     account_replication_type    = "LRS"
 
     tags = {
-        environment = "Litware Reqmnt"
+        environment = "Tag1"
     }
 }
 
@@ -203,6 +148,6 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     }
 
     tags = {
-        environment = "Litware Reqmnt"
+        environment = "Tag1"
     }
 }
