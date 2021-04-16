@@ -4,14 +4,15 @@ The goal of this session is to deploy one Linux VM to Azure. We are working excl
 
 Step 1: **Set Az CLI for the target cloud**.
 
-- In a terminal session, for commercial Azure subscriptions (this includes MSDN accounts) type `az cloud set --name AzureCloud`
+- In a terminal session, type `az cloud set --name AzureCloud`
+  - This is the default for commercial Azure subscriptions including MSDN accounts
   - If you are targeting an Azure Government subscription, enter `--name AzureUSGovernment`
 
 ![Azure Cloud List](/.attachments/az-cloud-list-output-table.png)
 
 Step 2: **Log into subscription**.
 
-- In a terminal session, type `az login` and use browser authentication to log into the target Azure subscription.
+- In a terminal session, type `az login` and use browser authentication to login to your Azure subscription.
 
 ![Azure Login Success](/.attachments/az-login-success.jpg)
 
@@ -23,7 +24,7 @@ Step 3: **Change directory to Session 1 folder**.
 
 Step 4: **Initialize Terraform**
 
-- The VS Code terraform plugin will likely recognize a terraform file exists and has no associated state or lock file, and the declared providers are not present.
+- The VS Code terraform plugin will likely recognize a terraform file exists but has no associated state or lock file and providers are not present.
 
 ![Terraform Plugin Alert](/.attachments/Terraform-run-init.png)
 
@@ -34,6 +35,7 @@ Step 4: **Initialize Terraform**
 Step 5: **Plan the Terraform deployment**
 
 - Plan the Terraform deployment and save the plan in a separate file by entering the command `terraform plan -out SingleVM.tfplan`
+- Quick note about terraform plan; running `terraform plan` will print the plan to the terminal and it will ot be stores elsewhere. Outputting the plan to a .tfplan file will enable later review of the plan.
 
 ![Terraform Plan start](/.attachments/tf-plan1.png)
 
@@ -66,8 +68,14 @@ Step 8: **Burn it down!!**
 
 ... planning the destruction ...
 
+- Once the destroy plan is complete, type `yes` to execute
+
 ![Terraform Destroy Confirm](/.attachments/tf-destroy2.png)
 
 ... executing the destroy ...
 
 ![Terraform Destroy Complete](/.attachments/tf-destroy3.png)
+
+- You should now see all resources removed in your portal.
+
+**End of session 1**
