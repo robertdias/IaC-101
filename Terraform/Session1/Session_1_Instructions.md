@@ -36,7 +36,9 @@ Step 5: **Plan the Terraform deployment**
 - Plan the Terraform deployment and save the plan in a separate file by entering the command `terraform plan -out SingleVM.tfplan`
 
 ![Terraform Plan start](/.attachments/tf-plan1.png)
-...
+
+... the plan is creating ...
+
 ![Terraform Plan finish](/.attachments/tf-plan2.png)
 
 Step 6: **Apply the Terraform configuration**
