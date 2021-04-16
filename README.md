@@ -1,14 +1,14 @@
 # IaC-101
 
-Infrastructure as Code for beginners. This repo focuses on learning Terraform basics.
+Infrastructure as Code for beginners. This repo focuses on learning Terraform basics on Azure.
 
-1. Deploy a basic Terraform file using your local machine. This will create one linux VM in your Azure environment.
+1. Deploy a basic Terraform file using your local machine. This will create one linux VM in your Azure environment. (v1.0.0)
 2. Create a composite terraform configuration using input variables. (future)
-3. TBD
 
 Prerequisites:
 
 - Access to an Azure subscription
+  - Get a [free sub here](https://azure.microsoft.com/en-us/free/search/?OCID=AID2100131_SEM_e3f23ff64dfe1dbd75325f8fc70875fb:G:s&ef_id=e3f23ff64dfe1dbd75325f8fc70875fb:G:s&msclkid=e3f23ff64dfe1dbd75325f8fc70875fb)
 
 We will cover topics like:
 
