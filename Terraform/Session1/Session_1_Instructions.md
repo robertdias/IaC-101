@@ -36,6 +36,7 @@ Step 5: **Plan the Terraform deployment**
 - Plan the Terraform deployment and save the plan in a separate file by entering the command `terraform plan -out SingleVM.tfplan`
 
 ![Terraform Plan start](/.attachments/tf-plan1.png)
+...
 ![Terraform Plan finish](/.attachments/tf-plan2.png)
 
 Step 6: **Apply the Terraform configuration**
@@ -44,6 +45,7 @@ Step 6: **Apply the Terraform configuration**
 - Apply the previously generated terraform plan by entering the command `terraform apply SingleVM.tfplan`
 
 ![Terraform Apply Start](/.attachments/tf-apply0.png)
+...
 ![Terraform Apply Finish](/.attachments/tf-apply1.png)
 
 Step 7: **Verify Deployment in portal**
@@ -57,5 +59,7 @@ Step 8: **Burn it down!!**
 - Remove all deployed resources by issuing `terraform destroy`
 
 ![Terraform Destroy Start](/.attachments/tf-destroy1.png)
+...
 ![Terraform Destroy Confirm](/.attachments/tf-destroy2.png)
+...
 ![Terraform Destroy Complete](/.attachments/tf-destroy3.png)
