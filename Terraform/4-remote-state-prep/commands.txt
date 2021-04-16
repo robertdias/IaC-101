@@ -1,3 +1,0 @@
-terraform init
-terraform plan -var resource_group_name=itma-state -out state.tfplan
-terraform apply "state.tfplan"
