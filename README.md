@@ -3,6 +3,7 @@
 Infrastructure as Code for beginners. This repo focuses on learning Terraform basics on Azure.
 
 **Session 1.** Deploy a basic Terraform file using your local machine. This will create one linux VM in your Azure environment. (v1.0.0)
+
 **Session 2.** Create a composite terraform configuration using input variables and output files. (future)
 
 Prerequisites:
