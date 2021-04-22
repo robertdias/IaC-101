@@ -5,3 +5,11 @@ variable "azureregion" {
 variable "resourcegroup" {
   type    = string
 }
+
+variable "environment" {
+  type    = string
+}
+
+variable "workload" {
+  type    = string
+}
