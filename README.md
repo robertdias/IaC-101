@@ -20,11 +20,11 @@ Using the Infrastructure as Code (IaC) System
 
 To be able to develop Terraform templates and GitHub workflows, install the following software on your workstation:
 
-- [Git](https://git-scm.com/download/win) or 'choco install git'
-- [Visual Studio Code](https://code.visualstudio.com/) or 'choco install vscode.install'
-- [Terraform](https://www.terraform.io/downloads.html) or 'choco install terraform'
-- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) or 'choco install azure-cli'
-- [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1)
+- [Git](https://git-scm.com/download/win) or `choco install git`
+- [Visual Studio Code](https://code.visualstudio.com/) or `choco install vscode.install`
+- [Terraform](https://www.terraform.io/downloads.html) or `choco install terraform`
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) or `choco install azure-cli`
+- [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1) or `choco install azurepowershell`
 
 Click on the links above and install the packages following the instructions provided.
 Next, start VS Code and install extensions. Some of the ones we recommend are listed below:
