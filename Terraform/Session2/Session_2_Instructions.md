@@ -4,6 +4,7 @@ The goal of this session is to demonstrate splitting the Terraform configuration
 
 Step 1: **Set Az CLI for the target cloud**.
 
+- If you disconnected from the Azure session, reconnect using the instructions below.
 - In a terminal session, type `az cloud set --name AzureCloud`
   - This is the default for commercial Azure subscriptions including MSDN accounts
   - If you are targeting an Azure Government subscription, enter `--name AzureUSGovernment`
